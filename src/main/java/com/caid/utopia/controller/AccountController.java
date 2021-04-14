@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.caid.utopia.entity.Flight;
-import com.caid.utopia.entity.Ticket;
-import com.caid.utopia.service.TicketService;
+import com.caid.utopia.entity.Account;
+import com.caid.utopia.service.AccountService;
 import exception.RecordNotFoundException;
 import exception.RecordCreationException;
 import exception.RecordForeignKeyConstraintException;
@@ -29,11 +29,11 @@ import exception.RecordHasDependenciesException;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-public class TicketController {
+public class AccountController {
 	
 
 	@Autowired
-	TicketService ticketService;
+	AccountService accountService;
 	
 	@ExceptionHandler({
 		RecordNotFoundException.class, //404
@@ -50,36 +50,36 @@ public class TicketController {
 	
 	
 	/* get all records*/
-	@RequestMapping(value = "/Ticket", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<List<Ticket>> getAllTicket(){
-		List<Ticket> ticket = ticketService.getAllTickets();
-		System.out.println(ticket.size());
-		if( ticket.size() == 0) {
+	@RequestMapping(value = "/Account", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<List<Account>> getAllAccount(){
+		List<Account> account = accountService.getAllAccounts();
+		System.out.println(account.size());
+		if( account.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
-			return new ResponseEntity<>(ticket, HttpStatus.OK);
+			return new ResponseEntity<>(account, HttpStatus.OK);
 		}
 	}
 	
 	/* get record by id */
-	@RequestMapping(value = "/Ticket/{id}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<Ticket> getTicketById(@PathVariable Integer id){
-		Ticket ticket = ticketService.getTicketsById(id);
-		if(ticket.getTicketNo() != id) {
+	@RequestMapping(value = "/Account/{id}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Account> getAccountById(@PathVariable Integer id){
+		Account account = accountService.getAccountById(id);
+		if(account.getAccountNumber() != id) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
-			return new ResponseEntity<>(ticket, HttpStatus.OK);
+			return new ResponseEntity<>(account, HttpStatus.OK);
 		}	
 	}
 	
 	
 	/* create record */
 	@Transactional
-	@RequestMapping(value = "/Ticket", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
-	public ResponseEntity<Object> createTicket(@RequestBody Ticket ticket) throws Exception {
+	@RequestMapping(value = "/Account", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
+	public ResponseEntity<Object> createAccount(@RequestBody Account account) throws Exception {
 		try {
-			if(ticketService.createTicket(ticket) instanceof Ticket) {
-				return new ResponseEntity<>(ticket, HttpStatus.CREATED);
+			if(accountService.createAccount(account) instanceof Account) {
+				return new ResponseEntity<>(account, HttpStatus.CREATED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -90,26 +90,11 @@ public class TicketController {
 	
 	/* update record */
 	@Transactional
-	@RequestMapping(value = "/Ticket", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public ResponseEntity<Object> updateTicket(@RequestBody Ticket ticket) throws Exception {
+	@RequestMapping(value = "/Account", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
+	public ResponseEntity<Object> updateAccount(@RequestBody Account account) throws Exception {
 		try {
-			if(ticketService.updateTicket(ticket) instanceof Ticket) {
-				return new ResponseEntity<>(ticket, HttpStatus.ACCEPTED);
-			} else {
-				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			}
-		} catch (Exception e) {
-			return handleException(e);
-		}
-	}
-	
-	/* update just flight */
-	@Transactional
-	@RequestMapping(value = "/Ticket/Flight", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
-	public ResponseEntity<Object> changeFlight(@RequestBody Ticket ticket) throws Exception {
-		try {
-			if(ticketService.changeFlight(ticket) instanceof Ticket) {
-				return new ResponseEntity<>(ticket, HttpStatus.ACCEPTED);
+			if(accountService.updateAccount(account) instanceof Account) {
+				return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
 			} else {
 				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 			}
@@ -120,11 +105,27 @@ public class TicketController {
 	
 	/* delete record */
 	@Transactional
-	@RequestMapping(value = "/Ticket", method = RequestMethod.DELETE, produces = "application/json", consumes = "application/json")
-	public ResponseEntity<Object> deleteTicket(@RequestBody Ticket ticket) throws Exception {
+	@RequestMapping(value = "/Account", method = RequestMethod.DELETE, produces = "application/json", consumes = "application/json")
+	public ResponseEntity<Object> deleteAccount(@RequestBody Account account) throws Exception {
 		try {
-			ticketService.deleteTicket(ticket);
-			return new ResponseEntity<>(ticket, HttpStatus.ACCEPTED);
+			accountService.deleteAccount(account);
+			return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			return handleException(e);
+		}
+	}
+	
+	
+	/* deactivate record */
+	@Transactional
+	@RequestMapping(value = "/Account/Deactivation", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
+	public ResponseEntity<Object> deactivateAccount(@RequestBody Account account) throws Exception {
+		try {
+			if(accountService.deactivateAccount	(account) instanceof Account) {
+				return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
+			} else {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
 		} catch (Exception e) {
 			return handleException(e);
 		}
