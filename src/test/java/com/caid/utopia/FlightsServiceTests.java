@@ -135,7 +135,7 @@ public class FlightsServiceTests extends UtopiaAdminApplicationTests {
 		String uri = "/flights";
 		
 		Flight flight = new Flight();
-		flight.setFlightNo(5);
+		flight.setFlightNo(-5);
 
 		Airport airportIdArrival = new Airport();
 		airportIdArrival.setAirportId(2);
