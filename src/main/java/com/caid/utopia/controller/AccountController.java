@@ -53,7 +53,6 @@ public class AccountController {
 	@RequestMapping(value = "/Account", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Account>> getAllAccount(){
 		List<Account> account = accountService.getAllAccounts();
-		System.out.println(account.size());
 		if( account.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
@@ -72,6 +71,11 @@ public class AccountController {
 		}	
 	}
 	
+	@RequestMapping(value = "/Account/User", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<Object> getUserAccounts(){
+		List<Account> accounts = accountService.getUserAccounts();
+			return new ResponseEntity<>(accounts, HttpStatus.OK);
+	}
 	
 	/* create record */
 	@Transactional

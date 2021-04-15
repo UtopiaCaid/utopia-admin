@@ -96,6 +96,20 @@ import exception.RecordUpdateException;
 			}
 		}
 		
+		/* Get all user accounts */
+		public List<Account> getUserAccounts() throws RecordNotFoundException {
+			try {
+				List<Account> accounts = accountRepo.getUserAccounts();
+				if(accounts.isEmpty()) {
+					throw new RecordNotFoundException();
+				} else {
+					return accounts;
+				}
+			} catch (Exception e) {
+				throw new RecordNotFoundException();
+			}
+		}
+		
 		
 		/* Update Account */
 		public Account updateAccount(Account account) throws RecordUpdateException {
