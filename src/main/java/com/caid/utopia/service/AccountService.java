@@ -75,7 +75,7 @@ import exception.RecordUpdateException;
 		public List<Account> getAllAccounts() throws RecordNotFoundException {
 			
 			try {
-				List<Account> account = accountRepo.findAll();
+				List<Account> account = accountRepo.getAccountsOrderByRole();
 				return account;
 			} catch (Exception e) {
 				throw new RecordNotFoundException();
@@ -147,7 +147,6 @@ import exception.RecordUpdateException;
 				account.setRole(accountRoleRepo.findById(3).get());
 				account.setEmail(null);
 				account.setPassword(null);
-				account.setUsername(null);
 				return accountRepo.save(account);
 			}catch(Exception e) {
 				throw e;

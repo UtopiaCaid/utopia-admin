@@ -19,4 +19,7 @@ public interface AccountRepo extends JpaRepository<Account, Integer>{
 	
 	@Query("FROM Account WHERE role = 1")
 	List<Account> getUserAccounts();
+	
+	@Query("From Account ORDER BY role ASC")
+	List<Account> getAccountsOrderByRole();
 }

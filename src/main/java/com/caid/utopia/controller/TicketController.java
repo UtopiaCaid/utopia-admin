@@ -53,7 +53,6 @@ public class TicketController {
 	@RequestMapping(value = "/Ticket", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Ticket>> getAllTicket(){
 		List<Ticket> ticket = ticketService.getAllTickets();
-		System.out.println(ticket.size());
 		if( ticket.size() == 0) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {

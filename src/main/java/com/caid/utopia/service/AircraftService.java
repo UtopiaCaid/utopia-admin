@@ -101,7 +101,8 @@ import exception.RecordUpdateException;
 					throw new RecordForeignKeyConstraintException();
 				}
 				if(first_class < 0 || second_class < 0 || third_class < 0 
-						|| first_class + second_class + third_class > seat_count) {
+						|| first_class + second_class + third_class > seat_count
+						|| seat_count > aircraftType.getSeatMaximum()) {
 					throw new RecordCreationException();
 				}
 				return aircraftRepo.save(aircraft);
@@ -154,7 +155,7 @@ import exception.RecordUpdateException;
 				}
 
 				Integer seat_count = aircraft.getSeatCount();
-				if(seat_count != null && seat_count > 0) {
+				if(seat_count != null && seat_count > 0 && seat_count < updatedAircraft.getAircraftType().getSeatMaximum()) {
 					updatedAircraft.setSeatCount(seat_count);
 				}
 				Integer first_class = aircraft.getFirstClassCount();

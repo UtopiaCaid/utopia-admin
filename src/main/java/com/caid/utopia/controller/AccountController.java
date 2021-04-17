@@ -125,6 +125,11 @@ public class AccountController {
 	@RequestMapping(value = "/Account/Deactivation", method = RequestMethod.PUT, produces = "application/json", consumes = "application/json")
 	public ResponseEntity<Object> deactivateAccount(@RequestBody Account account) throws Exception {
 		try {
+			System.out.println("Account = " + account);
+			System.out.println(account.getAccountNumber());
+			System.out.println(account.getUsername());
+			System.out.println(account.getPassword());
+			System.out.println(account.getEmail());
 			if(accountService.deactivateAccount	(account) instanceof Account) {
 				return new ResponseEntity<>(account, HttpStatus.ACCEPTED);
 			} else {

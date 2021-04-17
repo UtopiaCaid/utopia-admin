@@ -97,6 +97,10 @@ import exception.RecordUpdateException;
 				if(confirmationCode != null && confirmationCode >= 0) {
 					temp.setConfirmationCode(confirmationCode);
 				}
+				Integer ticketClass = ticket.getTicketClass();
+				if(ticketClass != null && ticketClass > 0 && ticketClass < 4) {
+					temp.setTicketClass(ticketClass);
+				}
 				Flight flight = ticket.getFlight();
 				if(flightsRepo.findById(flight.getFlightNo()).isPresent()) {
 					temp.setFlight(flightsRepo.findById(flight.getFlightNo()).get());
