@@ -27,7 +27,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Transactional
 	void ChangeAirplaneStatus() throws Exception {
 		AircraftType aircraftType = new AircraftType();
-		String uri = "/admin/admin/AircraftType";
+		String uri = "/admin/AircraftType";
 		aircraftType.setAircraftType(-2);
 		aircraftType.setaircraftTypeName("testAircraftType");
 		aircraftType.setSeatMaximum(100);
@@ -70,7 +70,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void CreateAircraftTest() throws Exception {
-		String uri = "/admin/admin/AircraftType";
+		String uri = "/admin/AircraftType";
 		AircraftType aircraftType = new AircraftType();
 		aircraftType.setAircraftType(-2);
 		aircraftType.setaircraftTypeName("testAircraftType");
@@ -98,7 +98,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void CreateAircraftTypeTest() throws Exception {
-		String uri = "/admin/admin/AircraftType";
+		String uri = "/admin/AircraftType";
 		AircraftType aircraftType = new AircraftType();
 		aircraftType.setAircraftType(-2);
 		aircraftType.setaircraftTypeName("testAircraftType");
@@ -127,7 +127,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	
 	@Test
 	void ReadAircraftTypeTest() throws Exception {
-		String uri = "/admin/admin/AircraftType";
+		String uri = "/admin/AircraftType";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
 				.andReturn();
@@ -158,7 +158,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void UpdateAircraftTypeTest() throws Exception {
-		String uri = "/admin/admin/AircraftType";
+		String uri = "/admin/AircraftType";
 		AircraftType aircraftType = new AircraftType();
 		aircraftType.setAircraftType(-1);
 		aircraftType.setSeatMaximum(1000);
@@ -186,7 +186,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void DeleteAircraftTypeTest() throws Exception {
-		String uri = "/admin/admin/AircraftType";
+		String uri = "/admin/AircraftType";
 		AircraftType aircraftType = new AircraftType();
 		aircraftType.setAircraftType(-1);
 		String inputJson = super.mapToJson(aircraftType);
