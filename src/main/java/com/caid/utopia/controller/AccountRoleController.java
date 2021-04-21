@@ -30,6 +30,7 @@ import exception.RecordUpdateException;
 import exception.RecordHasDependenciesException;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/admin")
 @RestController
 public class AccountRoleController {
 	
