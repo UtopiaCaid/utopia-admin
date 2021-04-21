@@ -28,6 +28,7 @@ import exception.RecordNotFoundException;
 
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/admin")
 @RestController
 public class FlightController {
 	

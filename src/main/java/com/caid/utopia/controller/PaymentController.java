@@ -14,6 +14,7 @@ import com.caid.utopia.entity.Payment;
 import com.caid.utopia.service.PaymentService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/admin")
 @RestController
 public class PaymentController {
 	

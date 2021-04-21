@@ -32,6 +32,7 @@ import exception.RecordHasDependenciesException;
 import exception.RecordHasDependenciesException;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/admin")
 @RestController
 public class AircraftController {
 	
