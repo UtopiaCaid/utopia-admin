@@ -27,7 +27,7 @@ public class FlightsServiceTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	public void flightInsertionTest() throws Exception {
-		String uri = "/flights";
+		String uri = "/admin/flights";
 		
 		Flight flight = new Flight();
 		Airport airportIdDeparture = new Airport();
@@ -79,7 +79,7 @@ public class FlightsServiceTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	public void updateFlightTest() throws Exception {
-			String uri = "/flights";
+			String uri = "/admin/flights";
 			
 			Flight flight = new Flight();
 			flight.setFlightNo(5);
@@ -132,7 +132,7 @@ public class FlightsServiceTests extends UtopiaAdminApplicationTests {
 	@Transactional
 	public void updateFlightBadArgumentTest() throws Exception {
 		//airportIdDeparture (which is a required field) removed in this test case)
-		String uri = "/flights";
+		String uri = "/admin/flights";
 		
 		Flight flight = new Flight();
 		flight.setFlightNo(-5);
@@ -176,7 +176,7 @@ public class FlightsServiceTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	public void deleteFlightTest() throws Exception {
-		String uri = "/flights";
+		String uri = "/admin/flights";
 		
 		Flight flight = new Flight();
 		flight.setFlightNo(5);
@@ -194,7 +194,7 @@ public class FlightsServiceTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	public void deleteFlightNoIdTest() throws Exception {
-		String uri = "/flights";
+		String uri = "/admin/flights";
 		
 		Flight flight = new Flight();
 
@@ -211,7 +211,7 @@ public class FlightsServiceTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	public void flightRetrievalTest() throws Exception {
-		String uri = "/flights";
+		String uri = "/admin/flights";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
 				.contentType(MediaType.APPLICATION_JSON_VALUE)).andReturn();
