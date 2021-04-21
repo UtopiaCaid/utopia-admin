@@ -27,7 +27,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Transactional
 	void ChangeAirplaneStatus() throws Exception {
 		AircraftType aircraftType = new AircraftType();
-		String uri = "/AircraftType";
+		String uri = "/admin/admin/AircraftType";
 		aircraftType.setAircraftType(-2);
 		aircraftType.setaircraftTypeName("testAircraftType");
 		aircraftType.setSeatMaximum(100);
@@ -45,7 +45,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 		aircraft.setSecondClassCount(20);
 		aircraft.setThirdClassCount(20);
 		aircraft.setAircraftStatus("Active");
-		uri = "/Aircraft";
+		uri = "/admin/Aircraft";
 		inputJson = super.mapToJson(aircraft);
 		mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
 			      .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
@@ -53,14 +53,14 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 		assertEquals(201, status);
 		aircraft = super.mapFromJson(mvcResult.getResponse().getContentAsString(), Aircraft.class);
 		/* deactivate */
-		uri = "/Aircraft/Deactivate";
+		uri = "/admin/Aircraft/Deactivate";
 		inputJson = super.mapToJson(aircraft);
 		mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
 			      .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
 		status = mvcResult.getResponse().getStatus();
 		assertEquals(202, status);
 		/* activate */
-		uri = "/Aircraft/Activate";
+		uri = "/admin/Aircraft/Activate";
 		mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
 			      .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
 		status = mvcResult.getResponse().getStatus();
@@ -70,7 +70,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void CreateAircraftTest() throws Exception {
-		String uri = "/AircraftType";
+		String uri = "/admin/admin/AircraftType";
 		AircraftType aircraftType = new AircraftType();
 		aircraftType.setAircraftType(-2);
 		aircraftType.setaircraftTypeName("testAircraftType");
@@ -88,7 +88,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 		aircraft.setSecondClassCount(20);
 		aircraft.setThirdClassCount(20);
 		aircraft.setAircraftStatus("Active");
-		uri = "/Aircraft";
+		uri = "/admin/Aircraft";
 		inputJson = super.mapToJson(aircraft);
 		mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
 			      .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
@@ -98,7 +98,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void CreateAircraftTypeTest() throws Exception {
-		String uri = "/AircraftType";
+		String uri = "/admin/admin/AircraftType";
 		AircraftType aircraftType = new AircraftType();
 		aircraftType.setAircraftType(-2);
 		aircraftType.setaircraftTypeName("testAircraftType");
@@ -113,7 +113,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	
 	@Test
 	void ReadAircraftTest() throws Exception {
-		String uri = "/Aircraft";
+		String uri = "/admin/Aircraft";
 
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
 				.andReturn();
@@ -127,7 +127,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	
 	@Test
 	void ReadAircraftTypeTest() throws Exception {
-		String uri = "/AircraftType";
+		String uri = "/admin/admin/AircraftType";
 		
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
 				.andReturn();
@@ -143,7 +143,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void UpdateAircraftTest() throws Exception {
-		String uri = "/Aircraft";
+		String uri = "/admin/Aircraft";
 		Aircraft aircraft = new Aircraft();
 		aircraft.setAircraftId(-1);
 		aircraft.setSeatCount(5000);
@@ -158,7 +158,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void UpdateAircraftTypeTest() throws Exception {
-		String uri = "/AircraftType";
+		String uri = "/admin/admin/AircraftType";
 		AircraftType aircraftType = new AircraftType();
 		aircraftType.setAircraftType(-1);
 		aircraftType.setSeatMaximum(1000);
@@ -173,7 +173,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void DeleteAircraftTest() throws Exception {
-		String uri = "/Aircraft";
+		String uri = "/admin/Aircraft";
 		Aircraft aircraft = new Aircraft();
 		aircraft.setAircraftId(-1);
 		String inputJson = super.mapToJson(aircraft);
@@ -186,7 +186,7 @@ public class UtopiaAdminAircraftTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void DeleteAircraftTypeTest() throws Exception {
-		String uri = "/AircraftType";
+		String uri = "/admin/admin/AircraftType";
 		AircraftType aircraftType = new AircraftType();
 		aircraftType.setAircraftType(-1);
 		String inputJson = super.mapToJson(aircraftType);

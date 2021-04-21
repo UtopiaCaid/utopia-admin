@@ -30,7 +30,7 @@ public class UtopiaAdminAccountTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void CreateAccountTest() throws Exception {
-		String uri = "/Account";
+		String uri = "/admin/Account";
 		Account account = new Account();
 		AccountRole role = new AccountRole();
 		role.setRoleId(1);
@@ -47,7 +47,7 @@ public class UtopiaAdminAccountTests extends UtopiaAdminApplicationTests {
 	
 	@Test
 	void ReadAccountTest() throws Exception {
-		String uri = "/Account";
+		String uri = "/admin/Account";
 
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
 				.andReturn();
@@ -62,7 +62,7 @@ public class UtopiaAdminAccountTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void UpdateAccountTest() throws Exception {
-		String uri = "/Account";
+		String uri = "/admin/Account";
 		Account account = new Account();
 		account.setAccountNumber(1);
 		account.setEmail("test3213123@gmail.com");
@@ -76,7 +76,7 @@ public class UtopiaAdminAccountTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void DeleteAccountTest() throws Exception {
-		String uri = "/Account";
+		String uri = "/admin/Account";
 		Account account = new Account();
 		account.setAccountNumber(-1);	
 		String inputJson = super.mapToJson(account);
@@ -89,11 +89,11 @@ public class UtopiaAdminAccountTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void DeactivateAccountTest() throws Exception {
-		String uri = "/Account";
+		String uri = "/admin/Account";
 		Account account = new Account();
 		account.setAccountNumber(1);
 		String inputJson = super.mapToJson(account);
-		uri = "/Account/Deactivation";
+		uri = "/admin/Account/Deactivation";
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
 			      .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
 		int status = mvcResult.getResponse().getStatus();
