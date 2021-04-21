@@ -1,6 +1,6 @@
 	package com.caid.utopia.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -39,7 +39,7 @@ import exception.RecordNotFoundException;
 		/* Find Flights from a specific airport */
 		public List<Flight> FindOneWayNoLayover(
 				Integer airportDep, Integer airportArr,
-				LocalDate flightDepBeginDate, LocalDate flightDepEndDate
+				LocalDateTime flightDepBeginDate, LocalDateTime flightDepEndDate
 				) throws RecordNotFoundException {
 			try {
 				return flightSearchRepo.FindOneWayNoLayover(
@@ -53,7 +53,7 @@ import exception.RecordNotFoundException;
 		/* Find all combinations of A-B-C layover flights */
 		public List<ArrayList<Flight>> FindOneWayLayover(
 				Integer airportDep, Integer airportArr,
-				LocalDate flightDepBeginDate, LocalDate flightDepEndDate) {
+				LocalDateTime flightDepBeginDate, LocalDateTime flightDepEndDate) {
 			try {
 				/* Start from Aiport A */
 				List<Flight> StartFlights = flightSearchRepo.FindInitialLayover(
@@ -92,7 +92,7 @@ import exception.RecordNotFoundException;
 		/* Find round trip departure flights no layovers*/
 		public List<Flight> FindRoundTripDepartureNoLayover(
 				Integer airportDep, Integer airportArr,
-				LocalDate flightDepBeginDate, LocalDate flightDepEndDate
+				LocalDateTime flightDepBeginDate, LocalDateTime flightDepEndDate
 				) throws RecordNotFoundException {
 			try {
 				return flightSearchRepo.FindRoundTripDepartureNoLayover(
@@ -106,7 +106,7 @@ import exception.RecordNotFoundException;
 		/* Find round trip return flights no layovers*/
 		public List<Flight> FindRoundTripReturnNoLayover(
 				Integer airportDep, Integer airportArr,
-				LocalDate flightRetBeginDate, LocalDate flightRetEndDate
+				LocalDateTime flightRetBeginDate, LocalDateTime flightRetEndDate
 				) throws RecordNotFoundException {
 			try {
 				return flightSearchRepo.FindRoundTripReturnNoLayover(
