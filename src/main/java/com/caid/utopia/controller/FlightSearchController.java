@@ -43,6 +43,7 @@ import exception.RecordUpdateException;
 
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/admin")
 @RestController
 public class FlightSearchController {
 	
