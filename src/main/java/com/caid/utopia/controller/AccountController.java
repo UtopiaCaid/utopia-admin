@@ -50,7 +50,7 @@ public class AccountController {
 	}
 	
 	
-	/* get all records*/
+	/* get all records, adding comment for change trigger*/
 	@RequestMapping(value = "/Account", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<List<Account>> getAllAccount(){
 		List<Account> account = accountService.getAllAccounts();
