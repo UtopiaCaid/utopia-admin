@@ -2,7 +2,7 @@ package com.caid.utopia.repo;
 
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,8 +24,8 @@ public interface FlightSearchRepo extends JpaRepository<Flight, Integer>{
 			+ "AND status = 'Ready'")
 	List<Flight> FindInitialLayover(
 			@Param("airportDep") Airport aiportDep, @Param("airportArr") Airport airportArr,  
-			@Param("flightDepBeginDate") LocalDate flightDepBeginDate,
-			@Param("flightDepEndDate") LocalDate flightDepEndDate
+			@Param("flightDepBeginDate") LocalDateTime flightDepBeginDate,
+			@Param("flightDepEndDate") LocalDateTime flightDepEndDate
 			);
 	
 	/* find all layover flights within a date window */
@@ -36,7 +36,7 @@ public interface FlightSearchRepo extends JpaRepository<Flight, Integer>{
 	/* airport B, airport C, flight A->B arrival date */
 	List<Flight> FindLayover(
 			@Param("airportCurr") Airport aiportCurr, @Param("airportDest") Airport airportDest,  
-			@Param("flightArrival") LocalDate flightArrival
+			@Param("flightArrival") LocalDateTime flightArrival
 			);
 	
 
@@ -47,8 +47,8 @@ public interface FlightSearchRepo extends JpaRepository<Flight, Integer>{
 			+ "AND status = 'Ready'")
 	List<Flight> FindOneWayNoLayover(
 			@Param("airportDep") Airport aiportDep, @Param("airportArr") Airport airportArr,  
-			@Param("flightDepBeginDate") LocalDate flightDepBeginDate,
-			@Param("flightDepEndDate") LocalDate flightDepEndDate
+			@Param("flightDepBeginDate") LocalDateTime flightDepBeginDate,
+			@Param("flightDepEndDate") LocalDateTime flightDepEndDate
 			);
 	
 	
@@ -62,8 +62,8 @@ public interface FlightSearchRepo extends JpaRepository<Flight, Integer>{
 			+ "AND status = 'Ready' ")
 	List<Flight> FindRoundTripDepartureNoLayover(
 			@Param("airportDep") Airport aiportDep, @Param("airportArr") Airport airportArr,  
-			@Param("flightDepBeginDate") LocalDate flightDepBeginDate,
-			@Param("flightDepEndDate") LocalDate flightDepEndDate
+			@Param("flightDepBeginDate") LocalDateTime flightDepBeginDate,
+			@Param("flightDepEndDate") LocalDateTime flightDepEndDate
 			);
     
 	@Query("FROM Flight WHERE "
@@ -72,8 +72,8 @@ public interface FlightSearchRepo extends JpaRepository<Flight, Integer>{
 			+ "AND status = 'Ready' ")
 	List<Flight> FindRoundTripReturnNoLayover(
 	@Param("airportDep") Airport aiportDep, @Param("airportArr") Airport airportArr,  
-	@Param("flightRetBeginDate") LocalDate flightRetBeginDate,
-	@Param("flightRetEndDate") LocalDate flightRetEndDate
+	@Param("flightRetBeginDate") LocalDateTime flightRetBeginDate,
+	@Param("flightRetEndDate") LocalDateTime flightRetEndDate
 	);
 	
 	
@@ -86,8 +86,8 @@ public interface FlightSearchRepo extends JpaRepository<Flight, Integer>{
 	/* Airport C, Airport B, Flight C->B departure between ret begin and end date */
 	List<Flight> FindRoundTripInitialReturnLayover(
 			@Param("airportDep") Airport aiportDep, @Param("airportArr") Airport airportArr,  
-			@Param("flightArrBeginDate") LocalDate flightArrBeginDate,
-			@Param("flightArrEndDate") LocalDate flightArrEndDate
+			@Param("flightArrBeginDate") LocalDateTime flightArrBeginDate,
+			@Param("flightArrEndDate") LocalDateTime flightArrEndDate
 			);
 	
 	/* find all layover return flights within a date window */
@@ -98,7 +98,7 @@ public interface FlightSearchRepo extends JpaRepository<Flight, Integer>{
 	/* airport B, airport A, flight ->A arrival date */
 	List<Flight> FindRoundTripReturnLayover(
 			@Param("airportCurr") Airport aiportCurr, @Param("airportDest") Airport airportDest,  
-			@Param("flightArrival") LocalDate flightArrival
+			@Param("flightArrival") LocalDateTime flightArrival
 			);
 	
 }

@@ -21,7 +21,7 @@ public class UtopiaAdminAccountRoleTests extends UtopiaAdminApplicationTests {
 	
 	@Test
 	void ReadAccountRoleTest() throws Exception {
-		String uri = "/AccountRole";
+		String uri = "/admin/AccountRole";
 
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
 				.andReturn();

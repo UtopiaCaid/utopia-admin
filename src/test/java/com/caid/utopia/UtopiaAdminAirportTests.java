@@ -28,7 +28,7 @@ public class UtopiaAdminAirportTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void CreateAirportTest() throws Exception {
-		String uri = "/Airport";
+		String uri = "/admin/Airport";
 		Airport airport = new Airport();
 		airport.setAirportCode(12345);
 		airport.setAirportName("Airport Name Test");
@@ -43,7 +43,7 @@ public class UtopiaAdminAirportTests extends UtopiaAdminApplicationTests {
 	
 	@Test
 	void ReadAirportTest() throws Exception {
-		String uri = "/Airport";
+		String uri = "/admin/Airport";
 
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
 				.andReturn();
@@ -58,7 +58,7 @@ public class UtopiaAdminAirportTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void UpdateAirportTest() throws Exception {
-		String uri = "/Airport";
+		String uri = "/admin/Airport";
 		Airport airport = new Airport();
 		airport.setAirportId(1);
 		airport.setAirportCode(12345);
@@ -75,7 +75,7 @@ public class UtopiaAdminAirportTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void DeleteAirportTest() throws Exception {
-		String uri = "/Airport";
+		String uri = "/admin/Airport";
 		Airport airport = new Airport();
 		airport.setAirportCode(12345);
 		airport.setAirportName("Airport Name Test");

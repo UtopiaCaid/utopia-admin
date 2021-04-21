@@ -28,7 +28,7 @@ public class UtopiaAdminTicketTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void CreateTicketTest() throws Exception {
-		String uri = "/Ticket";
+		String uri = "/admin/Ticket";
 		Ticket ticket = new Ticket();
 		Flight flight = new Flight();
 		flight.setFlightNo(1);
@@ -50,7 +50,7 @@ public class UtopiaAdminTicketTests extends UtopiaAdminApplicationTests {
 	
 	@Test
 	void ReadTicketTest() throws Exception {
-		String uri = "/Ticket";
+		String uri = "/admin/Ticket";
 
 		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
 				.andReturn();
@@ -65,7 +65,7 @@ public class UtopiaAdminTicketTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void UpdateTicketTest() throws Exception {
-		String uri = "/Ticket";
+		String uri = "/admin/Ticket";
 		Ticket ticket = new Ticket();
 		ticket.setTicketNo(1);
 		Flight flight = new Flight();
@@ -87,7 +87,7 @@ public class UtopiaAdminTicketTests extends UtopiaAdminApplicationTests {
 	@Test
 	@Transactional
 	void DeleteTicketTest() throws Exception {
-		String uri = "/Ticket";
+		String uri = "/admin/Ticket";
 		Ticket ticket = new Ticket();
 		Flight flight = new Flight();
 		flight.setFlightNo(1);

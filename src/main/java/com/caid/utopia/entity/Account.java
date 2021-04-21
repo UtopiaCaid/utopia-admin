@@ -57,6 +57,28 @@ public class Account implements Serializable {
 	@NonNull
 	private LocalDate dateCreated;
 
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "phone")
+	private Integer phone;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Integer phone) {
+		this.phone = phone;
+	}
+
 	public Integer getAccountNumber() {
 		return accountNumber;
 	}

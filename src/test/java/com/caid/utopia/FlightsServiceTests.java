@@ -2,8 +2,7 @@ package com.caid.utopia;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDate;
-
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -57,9 +56,9 @@ public class FlightsServiceTests extends UtopiaAdminApplicationTests {
 		aircraftType.setManufacturer("DEHAVILLAND OF CANADA");
 		aircraft.setAircraftType(aircraftType);
 		flight.setAircraft(aircraft);
-		LocalDate departure = LocalDate.of(2020, 1, 1);
+		LocalDateTime departure = LocalDateTime.of(2020, 1, 1, 0, 0, 0, 0);
 		flight.setDeparture(departure);
-		LocalDate arrival = LocalDate.of(2020, 1, 1);
+		LocalDateTime arrival = LocalDateTime.of(2020, 1, 1, 0, 0, 0, 0);
 		flight.setArrival(arrival);
 		flight.setStatus("completed");
 		
@@ -110,9 +109,9 @@ public class FlightsServiceTests extends UtopiaAdminApplicationTests {
 			aircraftType.setManufacturer("DEHAVILLAND OF CANADA");
 			aircraft.setAircraftType(aircraftType);
 			flight.setAircraft(aircraft);
-			LocalDate departure = LocalDate.of(2020, 1, 1);
+			LocalDateTime departure = LocalDateTime.of(2020, 1, 1, 0, 0, 0);
 			flight.setDeparture(departure);
-			LocalDate arrival = LocalDate.of(2020, 1, 1);
+			LocalDateTime arrival = LocalDateTime.of(2020, 1, 1, 0, 0, 0);
 			flight.setArrival(arrival);
 			flight.setStatus("completed");
 			
@@ -157,9 +156,9 @@ public class FlightsServiceTests extends UtopiaAdminApplicationTests {
 		aircraftType.setManufacturer("DEHAVILLAND OF CANADA");
 		aircraft.setAircraftType(aircraftType);
 		flight.setAircraft(aircraft);
-		LocalDate departure = LocalDate.of(2020, 1, 1);
+		LocalDateTime departure = LocalDateTime.of(2020, 1, 1, 0, 0, 0);
 		flight.setDeparture(departure);
-		LocalDate arrival = LocalDate.of(2020, 1, 1);
+		LocalDateTime arrival = LocalDateTime.of(2020, 1, 2, 0, 0, 0);
 		flight.setArrival(arrival);
 		flight.setStatus("completed");
 		
