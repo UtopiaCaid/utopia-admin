@@ -42,6 +42,18 @@ public class ExceptionReducer {
 			return new ResponseEntity<>("UNPROCESSABLE_ENTITY: Other records are dependent", 
 					headers, status);
 		}
+		if (ex instanceof RecordPaginationException) {
+			HttpStatus status = HttpStatus.NOT_FOUND; // 404
+			headers.add("Pagination Error", "Requested Pagination Not Found");
+			return new ResponseEntity<>("NOT FOUND: Requestion Pagination Returned Nothing",
+					headers, status);
+		}
+		if (ex instanceof SQLErrorException) {
+			HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR; // 500
+			headers.add("Internal SQL Error", "Could not complete the request");
+			return new ResponseEntity<>("INTERNAL SERVER ERROR: Operation Failed",
+					headers, status);
+		}
 		throw ex;
 	}
 }

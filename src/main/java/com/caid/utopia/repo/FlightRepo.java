@@ -20,4 +20,14 @@ public interface FlightRepo extends JpaRepository<Flight, Integer>{
 	
 	@Query("FROM Flight WHERE airportArrival = :curr OR airportDeparture = :curr")
 	List<Flight> AirportHasFlights(@Param("curr") Airport airport);
+	
+	
+	@Query(value = "FROM Flight f WHERE "
+			+ "LIMIT :limit "
+			+ "OFFSET :offset "
+			+ "ORDER BY f.:field :direction", nativeQuery = true)
+	List<Flight> getPaginatedFlights(
+			@Param("field") String field, 
+			@Param("direction") String direction, 
+			@Param("limit") Integer limit, @Param("offset") Integer offset);
 }

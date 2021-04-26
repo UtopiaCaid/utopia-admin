@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -39,6 +42,10 @@ public class FlightService {
 		}		
 	}
 	
+	public Integer getFlightCount() {
+		return FlightRepo.findAll().size();
+	}
+	
 	public Flight getFlightById(Integer id) throws FlightByIdException {
 		try {
 			Optional<Flight> possibleFlight = FlightRepo.findById(id);
@@ -62,14 +69,14 @@ public class FlightService {
 		}
 	}
 	
-	public List<Flight> deleteFlight(Flight flights) throws FlightDeletionException {
+	public Flight deleteFlight(Flight flight) throws FlightDeletionException {
 		try {
-			List<Ticket> tickets = TicketRepo.FlightHasTickets(flights);
+			List<Ticket> tickets = TicketRepo.FlightHasTickets(flight);
 			if(tickets.size() > 0) {
 				throw new RecordHasDependenciesException();
 			}
-			FlightRepo.delete(flights);
-			return FlightRepo.findAll();
+			FlightRepo.delete(flight);
+			return flight;
 		} catch (Exception e) {
 			throw new FlightDeletionException();
 		}
@@ -87,5 +94,14 @@ public class FlightService {
 		}
 	}
 	
-	
+	public Page<Flight> getPaginatedFlights(String field, String sort, 
+			Integer limit, Integer page) {
+		return FlightRepo.findAll(PageRequest.of(
+				page, 
+				limit, 
+				Sort.by(sort.equalsIgnoreCase("ASC") 
+						? Sort.Direction.ASC 
+						: Sort.Direction.DESC, 
+						field)));
+	}
 }

@@ -145,7 +145,6 @@ import exception.RecordUpdateException;
 				}
 				account = temp.get();
 				account.setRole(accountRoleRepo.findById(3).get());
-				account.setEmail(null);
 				account.setPassword(null);
 				return accountRepo.save(account);
 			}catch(Exception e) {
