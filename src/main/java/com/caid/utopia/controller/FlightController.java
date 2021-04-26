@@ -3,6 +3,7 @@ package com.caid.utopia.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.util.WebUtils;
 
 import com.caid.utopia.entity.Flight;
+import com.caid.utopia.entity.Paginator;
 import com.caid.utopia.service.FlightService;
 
 import exception.FlightByIdException;
@@ -25,6 +27,7 @@ import exception.FlightCreationException;
 import exception.FlightDeletionException;
 import exception.FlightDetailsException;
 import exception.RecordNotFoundException;
+import exception.RecordPaginationException;
 
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -81,15 +84,15 @@ public class FlightController {
 	
 	@ExceptionHandler(FlightDeletionException.class)
 	@RequestMapping(value = "/flights", method = RequestMethod.DELETE, consumes = "application/json")
-	public ResponseEntity<Flight> flightDeletion(@RequestBody Flight flights) {
-		if(flights.getFlightNo() == null) {
+	public ResponseEntity<Flight> flightDeletion(@RequestBody Flight flight) {
+		if(flight.getFlightNo() == null) {
 			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 		}
-		List <Flight> updatedFlights = flightService.deleteFlight(flights);
-		if (updatedFlights.contains(flights.getFlightNo())){
+		Flight updatedFlight = flightService.deleteFlight(flight);
+		if (updatedFlight == flight){
 			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 		} else {
-			return new ResponseEntity<>(flights, HttpStatus.OK);
+			return new ResponseEntity<>(flight, HttpStatus.OK);
 		}
 	}
 	
@@ -102,5 +105,23 @@ public class FlightController {
 		} else {
 			return new ResponseEntity<>(flight, HttpStatus.OK);
 		}
+	}
+	
+	@ExceptionHandler(RecordPaginationException.class)
+	@RequestMapping(value = "/flights/pagination", method = RequestMethod.POST, produces = "application/json", consumes = "application/json")
+	public ResponseEntity<List<Flight>> getFlightPagination(@RequestBody Paginator paginator) {
+		Page<Flight> flights = flightService.getPaginatedFlights(
+				paginator.getField(), paginator.getSort(), 
+				paginator.getPageSize(), paginator.getPage());
+		if(flights.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(flights.getContent(), HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/flightcount", method = RequestMethod.GET)
+	public ResponseEntity<Integer> getFlightCount() {
+		return new ResponseEntity<Integer>(flightService.getFlightCount(), HttpStatus.OK); 
 	}
 }
